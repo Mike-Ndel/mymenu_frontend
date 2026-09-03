@@ -1,7 +1,9 @@
-// Single source of truth for order status styling so the Overview page,
-// Orders page, and any future component all render statuses identically.
+// Single source of truth for status styling — shared by order statuses
+// (Overview, Orders) and table statuses (Tables), so StatusBadge renders
+// any of them identically without a second styling system.
 
 export const ORDER_STATUSES = ['Pending', 'Preparing', 'Ready', 'Completed', 'Cancelled'];
+export const TABLE_STATUSES = ['AVAILABLE', 'OCCUPIED', 'INACTIVE'];
 
 export const STATUS_STYLES = {
   Pending: {
@@ -23,6 +25,20 @@ export const STATUS_STYLES = {
   Cancelled: {
     badge: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-200',
     dot: 'bg-red-500',
+  },
+  // Table statuses — Available = positive/green, Occupied = MyMenu yellow,
+  // Inactive = neutral/gray.
+  AVAILABLE: {
+    badge: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200',
+    dot: 'bg-emerald-500',
+  },
+  OCCUPIED: {
+    badge: 'bg-primary/15 text-ink ring-1 ring-inset ring-primary/40',
+    dot: 'bg-primary',
+  },
+  INACTIVE: {
+    badge: 'bg-gray-100 text-gray-500 ring-1 ring-inset ring-gray-200',
+    dot: 'bg-gray-400',
   },
 };
 

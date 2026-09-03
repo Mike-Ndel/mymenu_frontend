@@ -147,3 +147,14 @@ export function getOldestPendingOrderId(orderList = orders) {
   if (pending.length === 0) return null;
   return sortOrdersFIFO(pending)[0].id;
 }
+
+// An order is "active" while it's still moving through the kitchen —
+// i.e. not yet completed and not cancelled. Used by the Tables page to
+// derive each table's activeOrderCount without duplicating order data.
+const ACTIVE_ORDER_STATUSES = ['Pending', 'Preparing', 'Ready'];
+
+export function getActiveOrderCountForTable(tableNumber, orderList = orders) {
+  return orderList.filter(
+    (order) => order.table.number === tableNumber && ACTIVE_ORDER_STATUSES.includes(order.status)
+  ).length;
+}
